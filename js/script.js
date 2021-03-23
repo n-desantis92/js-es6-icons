@@ -118,6 +118,9 @@ const icons = [
   },
 ];
 
+// Milestone 1
+// Partendo dalla seguente struttura dati , mostriamo in pagina tutte le icone disponibili come da layout.
+
 // <div>
 //   <i class="fas fa-cat"></i>
 //   <div class="title">CAT</div>
@@ -125,14 +128,47 @@ const icons = [
 
 const containerIcone = $(".icons");
 
-icons.forEach((icone) => {
+// Milestone 2
+// Coloriamo le icone per tipo
 
-  const {name,family,prefix} = icone;
+const colori = [
+  "green",
+  "red",
+  "blue"
+];
 
-  const htmlIcone = `<div>
-    <i class="${family} ${prefix}${name}"></i>
+// creo un array vuoto dove vado ad inserire le categorie che trovo
+
+const categorie = [];
+
+// cerco le categorie nelle icone e se ne trovo di diverse le vado ad inserire nel mio array da riempire
+icons.forEach((item, i) => {
+  if (categorie.includes(item.category) == false) {
+    categorie.push(item.category);
+  }
+});
+console.log(categorie);
+console.log(categorie + " categorie trovate tra le icone");
+
+// vado a colorare le icone confrontando indice di colori con indice di categorie
+const iconeColorate = icons.map((icone) => {
+  const indexCategoria = categorie.indexOf(icone.category);
+  const itemColor = colori[indexCategoria];
+  icone.color = itemColor;
+  return icone;
+});
+
+console.log(iconeColorate);
+
+// eseguo un ciclo sulle iconeColorate
+iconeColorate.forEach((icone) => {
+// esplodo l'obj e cosi creo delle variabili da utilizzare
+  const {name,family,prefix,color} = icone;
+// creo l'html da inserire
+  const html = `<div>
+    <i class="${family} ${prefix}${name}" style="color: ${color}"></i>
     <div class="title">CAT</div>
   </div>`;
-
-  containerIcone.append(htmlIcone);
+// inserisco l'html creato con metodo append() nel div contenitore
+  containerIcone.append(html);
 });
