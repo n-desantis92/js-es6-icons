@@ -167,7 +167,7 @@ iconeColorate.forEach((icone) => {
 // creo l'html da inserire
   const html = `<div>
     <i class="${family} ${prefix}${name}" style="color: ${color}"></i>
-    <div class="title">CAT</div>
+    <div class="title">${name}</div>
   </div>`;
 // inserisco l'html creato con metodo append() nel div contenitore
   containerIcone.append(html);
@@ -186,4 +186,35 @@ categorie.forEach((item, i) => {
   const optionHtml = `<option value="${item}">${item}</option>`;
   // vado ad inserire html creato con append() nel contenitore select
   select.append(optionHtml);
+});
+
+
+// aggiungo l'evento .change()
+
+select.change(function () {
+  const optionSelected = $(this).val();
+  let iconeFilter = iconeColorate.filter((icon) =>{
+    return icon.category == optionSelected;
+  });
+
+  // creo una condizione in caso seleziono all
+  if (iconeFilter.length == 0) {
+    iconeFilter = iconeColorate;
+  }
+
+  // setto vuoto l'html prima di andare ad inserire le icone
+  containerIcone.html("");
+
+  // eseguo un ciclo sulle iconeFilter
+  iconeFilter.forEach((icone) => {
+  // esplodo l'obj e cosi creo delle variabili da utilizzare
+    const {name,family,prefix,color} = icone;
+  // creo l'html da inserire
+    const html = `<div>
+      <i class="${family} ${prefix}${name}" style="color: ${color}"></i>
+      <div class="title">${name}</div>
+    </div>`;
+  // inserisco l'html creato con metodo append() nel div contenitore
+    containerIcone.append(html);
+  });
 });
