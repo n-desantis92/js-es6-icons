@@ -172,3 +172,18 @@ iconeColorate.forEach((icone) => {
 // inserisco l'html creato con metodo append() nel div contenitore
   containerIcone.append(html);
 });
+
+// Milestone 3
+// Creiamo una select con i tipi di icone e usiamola per filtrare le icone
+
+// vado a selezionarmi il selettore
+const select = $("#type");
+console.log(select);
+
+// ciclo le categorie per creare le varie option dentro la select
+categorie.forEach((item, i) => {
+  // vado a creare l'html per le option
+  const optionHtml = `<option value="${item}">${item}</option>`;
+  // vado ad inserire html creato con append() nel contenitore select
+  select.append(optionHtml);
+});
