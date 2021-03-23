@@ -198,7 +198,7 @@ function printIcons(target,icons) {
   target.html("");
 
   // eseguo un ciclo sulle iconeFilter
-  iconeFilter.forEach((icone) => {
+  icons.forEach((icone) => {
   // esplodo l'obj e cosi creo delle variabili da utilizzare
     const {name,family,prefix,color} = icone;
   // creo l'html da inserire
