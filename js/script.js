@@ -158,20 +158,7 @@ const iconeColorate = icons.map((icone) => {
   return icone;
 });
 
-console.log(iconeColorate);
-
-// eseguo un ciclo sulle iconeColorate
-iconeColorate.forEach((icone) => {
-// esplodo l'obj e cosi creo delle variabili da utilizzare
-  const {name,family,prefix,color} = icone;
-// creo l'html da inserire
-  const html = `<div>
-    <i class="${family} ${prefix}${name}" style="color: ${color}"></i>
-    <div class="title">${name}</div>
-  </div>`;
-// inserisco l'html creato con metodo append() nel div contenitore
-  containerIcone.append(html);
-});
+printIcons(containerIcone,iconeColorate);
 
 // Milestone 3
 // Creiamo una select con i tipi di icone e usiamola per filtrare le icone
@@ -188,7 +175,6 @@ categorie.forEach((item, i) => {
   select.append(optionHtml);
 });
 
-
 // aggiungo l'evento .change()
 
 select.change(function () {
@@ -202,8 +188,14 @@ select.change(function () {
     iconeFilter = iconeColorate;
   }
 
+  printIcons(containerIcone,iconeFilter);
+});
+
+
+// funzioni
+function printIcons(target,icons) {
   // setto vuoto l'html prima di andare ad inserire le icone
-  containerIcone.html("");
+  target.html("");
 
   // eseguo un ciclo sulle iconeFilter
   iconeFilter.forEach((icone) => {
@@ -215,6 +207,6 @@ select.change(function () {
       <div class="title">${name}</div>
     </div>`;
   // inserisco l'html creato con metodo append() nel div contenitore
-    containerIcone.append(html);
+    target.append(html);
   });
-});
+}
